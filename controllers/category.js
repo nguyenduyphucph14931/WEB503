@@ -44,9 +44,10 @@ export const deleteCategory = async (request,response)=>{
 
 export const updateCategory = async (request,response)=>{
     try {
-        const category = await Category.findOneAndUpdate({id:request.params.id}).exec()
+        const category = await Category.findOneAndUpdate({id:request.params.id},request.body,{new:true}).exec()
+        // const product = await Product.findOneAndUpdate({_id:request.params.id},request.body,{new:true}).exec()
         response.json(category)
     } catch (error) {
-        response.status(400).json({message:"Không thể thêm"})
+        response.status(400).json({message:"Không thể sửa"})
     }
 }
